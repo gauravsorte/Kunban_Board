@@ -9,13 +9,12 @@ import {
   IconButton,
   Button,
 } from '@chakra-ui/react'
-// import { AddIcon } from "@chakra-ui/icons";
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd'
 import { INITIAL_DATA } from './constants'
 
 const getInitialTaskCounter = (initialData) => {
   const taskIds = Object.keys(initialData.tasks)
-  if (taskIds.length === 0) return 1 // Or whatever base you want if no initial tasks
+  if (taskIds.length === 0) return 1
 
   let maxNum = 0
   taskIds.forEach((id) => {
@@ -35,8 +34,6 @@ export default function App() {
   )
 
   const onDragEnd = (result) => {
-    console.log('result: ', result)
-
     const { source, destination, draggableId } = result
     if (!destination) return
 
@@ -127,7 +124,6 @@ export default function App() {
               .map((taskId) => data.tasks[taskId])
               .filter(Boolean)
 
-            console.log('tasks: ', tasks)
             return (
               <Droppable droppableId={column.id} key={column.id}>
                 {(provided) => (
